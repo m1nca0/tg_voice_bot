@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: telegram-voice-converter
+    runtime: docker
+    plan: free
+    healthCheckPath: /health
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
+      - key: MAX_DOWNLOAD_MB
+        value: "20"
+      - key: MAX_CONCURRENT_CONVERSIONS
+        value: "2"
+      - key: FFMPEG_TIMEOUT_SECONDS
+        value: "240"
+      - key: LOG_LEVEL
+        value: INFO
